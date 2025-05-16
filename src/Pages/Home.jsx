@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import BannerButtons from "@/components/homebutton";
 import RecentWork from "@/components/RecentWork";
-import Video from "@/components/video";
+import Video from "@/components/Video";
 import ProjectSection from "@/components/ProjectSection";
 import AboutSection from "@/components/Aboutpage";
 import StatsCard from "@/components/Statscard";
