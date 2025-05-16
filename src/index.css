@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  :root {
+    --radius: 0.5rem
+  }
+}
+/* Global styles */
+body {
+  @apply bg-white text-black;
+  overflow-x: hidden
+}
+
+html.dark body {
+  @apply bg-black text-white;
+}
+
+a {
+  @apply text-gray-900;
+}
+
+html.dark a {
+  @apply text-gray-200;
+}
+
+
+
+
