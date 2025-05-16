@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import FollowCursor from "./components/curser";
 import Home from "./Pages/Home";
-import About from "./pages/About";
-import Services from "./pages/Services";
-import Contact from "./pages/Contact";
+import About from "./Pages/About";
+import Services from "./Pages/Services";
+import Contact from "./Pages/Contact";
 import Fluid from "./components/Fluid2"; // Fixed import path
 import Team from "./Pages/Team";
 import Work from "./Pages/Work";
