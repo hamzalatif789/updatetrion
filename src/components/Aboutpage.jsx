@@ -7,7 +7,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const AboutSection = () => {
   const headingRef = useRef(null);
-  const textRef = useRef(null);
+  const leftTextRef = useRef(null);
+  const rightTextRef = useRef(null);
   const buttonRef = useRef(null);
 
   useEffect(() => {
@@ -30,7 +31,7 @@ const AboutSection = () => {
     );
 
     gsap.fromTo(
-      textRef.current,
+      leftTextRef.current,
       { opacity: 0, y: 30 },
       {
         opacity: 1,
@@ -39,8 +40,26 @@ const AboutSection = () => {
         ease: "power3.out",
         delay: 0.3,
         scrollTrigger: {
-          trigger: textRef.current,
+          trigger: leftTextRef.current,
           start: "top 85%",
+          end: "top 50%",
+          scrub: 1.5,
+        },
+      }
+    );
+
+    gsap.fromTo(
+      rightTextRef.current,
+      { opacity: 0, x: 40 },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 1.2,
+        ease: "power3.out",
+        delay: 0.6,
+        scrollTrigger: {
+          trigger: rightTextRef.current,
+          start: "top 90%",
           end: "top 50%",
           scrub: 1.5,
         },
@@ -55,7 +74,7 @@ const AboutSection = () => {
         scale: 1,
         duration: 1.2,
         ease: "power3.out",
-        delay: 0.6,
+        delay: 0.9,
         scrollTrigger: {
           trigger: buttonRef.current,
           start: "top 90%",
@@ -81,7 +100,7 @@ const AboutSection = () => {
           WE ARE
         </motion.h1>
         <motion.p
-          ref={textRef}
+          ref={leftTextRef}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
@@ -89,14 +108,15 @@ const AboutSection = () => {
           className="text-lg mt-4 md:w-3/4 leading-relaxed"
         >
           As an award-winning agency within the digital jungle,{" "}
-          <span className="font-semibold">TRIONN®</span> transcends aesthetics, crafting your vision into a legacy that endures.
+          <span className="font-semibold">TRIONN®</span> transcends aesthetics,
+          crafting your vision into a legacy that endures.
         </motion.p>
       </div>
 
       {/* Right Side - Content + Button */}
       <div className="w-full flex justify-end">
         <motion.div
-          ref={textRef}
+          ref={rightTextRef}
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
@@ -104,13 +124,18 @@ const AboutSection = () => {
           className="md:w-1/3 text-left"
         >
           <p className="text-lg md:text-xl mb-6 leading-relaxed">
-            We roar with creativity, staying updated with the latest tech to make your brand a formidable force in the digital wilderness and deliver exceptional website and app experiences.
+            We roar with creativity, staying updated with the latest tech to
+            make your brand a formidable force in the digital wilderness and
+            deliver exceptional website and app experiences.
           </p>
 
           {/* Button */}
           <motion.button
             ref={buttonRef}
-            whileHover={{ scale: 1.1, boxShadow: "0px 0px 15px rgba(255, 255, 255, 0.5)" }}
+            whileHover={{
+              scale: 1.1,
+              boxShadow: "0px 0px 15px rgba(255, 255, 255, 0.5)",
+            }}
             transition={{ duration: 0.3 }}
             className="border border-gray-300 px-6 py-3 rounded-full transition-all duration-300 hover:bg-white hover:text-black font-semibold"
           >

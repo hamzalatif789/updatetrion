@@ -8,6 +8,8 @@ const AnimatedText = () => {
   const textRef = useRef(null);
 
   useEffect(() => {
+    if (!textRef.current) return;
+
     const lines = textRef.current.children;
 
     gsap.fromTo(
@@ -32,11 +34,11 @@ const AnimatedText = () => {
   return (
     <div
       ref={textRef}
-      className="text-9xl font-bold  text-center leading-tight pt-6"
+      className="text-9xl font-bold text-center leading-tight pt-6"
     >
-      <div>Join our</div>
-      <div>Jungle</div>
-      <div>Trek</div>
+      <h1>Join our</h1>
+      <h1>Jungle</h1>
+      <h1>Trek</h1>
     </div>
   );
 };

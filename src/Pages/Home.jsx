@@ -1,5 +1,4 @@
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
+
 import BannerButtons from "@/components/homebutton";
 import RecentWork from "@/components/RecentWork";
 import Video from "@/components/Video";
@@ -12,12 +11,7 @@ import ScrollVelocity from "@/components/scrolltext";
 import DribbbleSection from "@/components/DribbbleSection";
 import AnimatedTextSection from "@/components/AnimatedTextSection";
 import SocialLinks from "@/components/socialLinks";
-import { HeroSection } from "@/components/ui/Good";
-import Ballpit from "@/components/Bubbles";
-import asset27 from "@/assets/asset 27.svg";
 import First from "@/components/First";
-
-
 const Home = () => {
   return (
     <>

@@ -18,34 +18,47 @@ const DribbbleSection = () => {
   const images = [asset15, asset16, asset17, asset18, asset19, asset20];
 
   useEffect(() => {
-    // GSAP animation for card reveal on scroll
-    cardsRef.current.forEach((card, index) => {
-      if (card) {
-        gsap.fromTo(
-          card,
-          {
-            autoAlpha: 0, // Controls visibility and opacity
-            y: 50,
-            rotationY: index % 2 === 0 ? -90 : 90, // Alternate rotation directions
+    // Reset the refs array before setting
+    cardsRef.current = [];
+
+    // Create animations and store references for cleanup
+    const animations = images.map((_, index) => {
+      const card = cardsRef.current[index];
+      if (!card) return null;
+
+      return gsap.fromTo(
+        card,
+        {
+          autoAlpha: 0, // Controls visibility and opacity
+          y: 50,
+          rotationY: index % 2 === 0 ? -90 : 90, // Alternate rotation directions
+        },
+        {
+          autoAlpha: 1,
+          y: 0,
+          rotationY: 0,
+          duration: 1.2,
+          ease: "power4.out",
+          delay: index * 0.2,
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+            end: "bottom 15%",
+            toggleActions: "play none none reverse",
           },
-          {
-            autoAlpha: 1,
-            y: 0,
-            rotationY: 0,
-            duration: 1.2,
-            ease: "power4.out",
-            delay: index * 0.2,
-            scrollTrigger: {
-              trigger: card,
-              start: "top 85%",
-              end: "bottom 15%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
-      }
+        }
+      );
     });
-  }, []);
+
+    // Cleanup function to kill ScrollTriggers on unmount
+    return () => {
+      animations.forEach((anim) => {
+        if (anim && anim.scrollTrigger) {
+          anim.scrollTrigger.kill();
+        }
+      });
+    };
+  }, [images]);
 
   return (
     <section className="dribbble-section p-8">
@@ -55,7 +68,11 @@ const DribbbleSection = () => {
           {images.map((image, index) => (
             <div
               key={index}
-              ref={(el) => (cardsRef.current[index] = el)}
+              ref={(el) => {
+                if (el && !cardsRef.current.includes(el)) {
+                  cardsRef.current[index] = el;
+                }
+              }}
               className="card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer"
             >
               <img
